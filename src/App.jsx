@@ -3,15 +3,15 @@ import Todos from './components/Todos';
 
 const ListTodos = [
   { id: 1,
-    title: 'Todo 1',
-    completed: true 
+    title: 'Aprender algo nuevo',
+    completed: false 
   },
   { id: 2,
-    title: 'Todo 2',
+    title: 'Terminar mi Todo App',
     completed: false 
   },
   { id: 3,
-    title: 'Todo 3',
+    title: 'Ordenar mi habitación',
     completed: false 
   }
 ]
@@ -24,8 +24,19 @@ function App() {
     setTodos(filteredTodos)
   }
 
+  const handleCompleted = (id) => {
+    const completedTodo = todos.map(todo => {
+      if (todo.id === id) {
+        return {...todo, completed: !todo.completed}
+      }
+      return todo;
+    })
+
+    setTodos(completedTodo)
+  }
+
   return (
-    <Todos todos={todos} onRemoveTodo={handleRemove} />
+    <Todos todos={todos} onRemoveTodo={handleRemove} onComplete={handleCompleted} />
   )
 }
 
