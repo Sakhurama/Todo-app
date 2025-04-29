@@ -19,8 +19,13 @@ const ListTodos = [
 function App() {
   const [todos, setTodos] = useState(ListTodos);
 
+  const handleRemove = (id) => {
+    const filteredTodos = todos.filter( todo => todo.id !== id)
+    setTodos(filteredTodos)
+  }
+
   return (
-    <Todos todos={ListTodos} />
+    <Todos todos={todos} onRemoveTodo={handleRemove} />
   )
 }
 
