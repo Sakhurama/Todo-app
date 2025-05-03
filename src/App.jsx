@@ -20,8 +20,13 @@ function App() {
   const [todos, setTodos] = useState(ListTodos);
 
   const handleRemove = (id) => {
-    const filteredTodos = todos.filter( todo => todo.id !== id)
-    setTodos(filteredTodos)
+    const remove = todos.filter(tarea => tarea.id !== id)
+    setTodos(remove)
+  }
+
+  const handleRemoveAll = () => {
+    const remove = todos.filter(todo => todo.id == 0)
+    setTodos(remove)
   }
 
   const handleCompleted = (id) => {
@@ -36,7 +41,7 @@ function App() {
   }
 
   return (
-    <Todos todos={todos} onRemoveTodo={handleRemove} onComplete={handleCompleted} />
+    <Todos todos={todos} onRemoveTodo={handleRemove} onRemoveAll={handleRemoveAll} onComplete={handleCompleted} />
   )
 }
 
